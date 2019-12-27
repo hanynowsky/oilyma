@@ -1,0 +1,23 @@
+th.sorted.ascending:after {
+	content: "  \2191";
+}
+
+th.sorted.descending:after {
+	content: " \2193";
+}
+
+.modaloverlay {
+	position: fixed;
+	z-index: 10;
+	left: 0;
+	top: 0;
+	background-color: black;
+	/* background: rgba(200,200,200,0.5) url('/static/loading.gif') no-repeat center; */
+	background: rgba(32,32,23,1.1) url('/static/loading.gif') no-repeat center;
+	display: block;
+	opacity: .90;
+	filter: alpha(opacity=90);
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}

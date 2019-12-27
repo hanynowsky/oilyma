@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+{% block body %}
+<nav id="literature_hooks" class="navbar navbar-light bg-light">
+	<a class="navbar-brand" href="#footer">&darr;</a>
+	<ul class="nav nav-pills">
+		<li class="nav-item">
+			<a class="nav-link" href="#visco_card">Viscocity Grade</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#hths_card">High Shear</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#noack_card">Volatility</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#tbn_card">Sludge Cleaning</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#vi_card">Viscocity Index</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#approvals_card" role="button" aria-haspopup="true" aria-expanded="false">Approvals</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="#approvals_card">BMWLL01</a>
+				<div role="separator" class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#approvals_card">BMWLL04</a>
+			</div>
+		</li>
+	</ul>
+</nav>
+<hr />
+<div data-spy="scroll" data-target="#literature_hooks" data-offset="0" class="scrollspy-example" style='height:auto;max-height:250px;min-height:180px;overflow-y: scroll;'>
+	<div class="media" id='visco_card'>
+		<img width="100"  src="https://www.ato24.de/media/catalog/product/cache/3/image/85e4522595efc69f496374d01ef2bf13/b/m/bmw-5w-30-longlife-01-1-l.jpg" class="align-self-start mr-3" alt="LongLife Oil">
+		<div class="media-body">
+			<h5 class="mt-0">Viscosity</h5>
+			<p class='card-text'>Since not long ago, car engines have been running on multigrade oil. Which is usually a blend of conventional oil with synthetic oil or ideally a full synthetic oil produced through hydrocracking, natural gas conversion or ester synthesis...</p>
+			<p>What you need to know is simple. A multigrade oil has two viscosity grades one for winter temperatures and the second for when the engine is at operating temperature.
+			The video below explains very well how a multigrade oil acts on a car engine.
+			It was created by a former automotive engineer through which he explains the role of engine oil and the application of multigrade blends on today's engines.</p>
+			<p>As you look at this <a href='/static/viscosity-guide.png'>chart</a> you come to the conclusion that the best oil is the one that covers the widest range. Not true! In fact you want to find the oil that best fits your climate with the smallest range. The lower or "w" number is all about start up when cold. Diesel engines for example are notoriously hard starters, add thick, cold oil and its even harder. Thinner viscosity oils flow better but are less likely to "stick and coat" to the metal parts needing the oil. 5w viscosity does provide the start up lubricity that a 10w or 20w provides. As you look at the second number you want to look at the average operating temperatures and frequency of above normal (90-100°C) operating temperatures</p>	
+		</div>
+		<iframe style='margin:5px;'  src="https://youtube.com/embed/aRvZyIPKR90" scrolling="no" allowfullscreen></iframe>
+	</div>
+
+	<div class="card" id='hths_card'>
+		<div class="card-header">
+			HTHS
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">High Temperature High Shear</h5>
+			<p class="card-text">HTHS is a viscosity measure that is more oriented towards comparing the ability of the oil between protecting the engine and ensuring fuel efficiency.</p>
+			<p>The compromise is a value of 3.5. Higher than that the oil is said to be more protective with less fuel efficiency. Lesser than that, it is said to have more fuel efficiency with less protection against wear and tear</p>
+			<br />
+			<a href="/static/hths_wear.png"><img height='150' src="/static/hths_wear.png" alt='...'/></a>
+			<a href='/static/hths_fe.png'><img height='150' src="/static/hths_fe.png" alt='...' /></a>
+			<p>
+			<br />
+			<a href="/static/downloads/hths_1-s2.0-S1877705816313601-main.pdf" class="btn btn-primary">Download study summary</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="card" id='noack_card'>
+		<div class="card-header">
+			Volatility
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Evaporation Loss</h5>
+			<p class="card-text">The volatility (NOACK) is simply the percentage of oil loss through evaporation. The lower the value, the better the oil is.</p>
+			<br />
+			<p>
+			<a href="#" class="btn btn-primary">Download study summary</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="card" id='tbn_card'>
+		<div class="card-header">
+			Sludge Cleaning
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Total base number</h5>
+			<img style='float:left;padding:0 15px;' height='200px' src='/static/TAN-TBN.png'/>
+			<p class="card-text">Total Base Number (TBN) is a measurement of basicity that is expressed in terms of klk number of milligrams of potassium hydroxide per gram of oil sample (mg KOH/g). TBN is an important measurement in petroleum products, and the value varies depending on its application. TBN generally ranges from 6–8 mg KOH/g in modern lubricants, 7–10 mg KOH/g for general internal combustion engine use and 10–15 mg KOH/g for diesel engine operations. TBN is typically higher for marine grade lubricants, approximately 15-80 mg KOH/g, as the higher TBN values are designed to increase the operating period under harsh operating conditions, before the lubricant requires replacement. TBN is generally a measure of alkaline and other chemical contents on the oil that are meant to ensure a cleaning power over sludge in the engine.</p>
+			<p> The higher TBN is, the better is the oil.</p>
+			<br />
+			<p>
+			<a href="#" class="btn btn-primary">Download study summary</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="card" id='vi_card'>
+		<div class="card-header">
+			Viscocity Index
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Viscosity Index</h5>
+			<p class="card-text">Viscosity index is a unitless measure that reflects the ability of the oil to resist temperature changes. It is calculated on the basis of viscosity at 40 degress Celcius and 100 degress Celcius.</p>
+			<p> The higher the VI is, the better is the oil.</p>
+			<br />
+			<p>
+			<a href="#" class="btn btn-primary">Download study summary</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="card" id='approvals_card'>
+		<div class="card-header">
+			Approvals
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Approvals</h5>
+			<p class="card-text">Oil approvals are summarized on the table below:</p>
+			<br />
+			<p> 
+			BMW revises their oil formulations every few years based on contemporary engine design, mileage and emissions requirements, fuel type and quality, region, and marketing (service plans). Each new spec is coded by year and roughly corresponds to new generations of BMW engines. There can be multiple oil viscosities for the same rating. These ratings are just a guide so that the appropriate oil is used for your engine design.
+			</p>
+			<p><b>LL-98 (1998)</b>. API SJ. ACEA A3/B3. SAE 5W30, 5W40. The oldest available specification. Anything with this rating has been approved for older model BMWs - all chassis before the E46 and engines before the M54. BMW no longer produces oil in this spec but LL-98 alternatives exist (Red Line 5W40). LL-98 oils are compatible with LL-01 oils.</p>
+			<p>
+			<b>LL-01 (2001)</b>. API SJ/SL. ACEA A3/B3. SAE 0W30, 5W30, 5W40, 10W60. The first revision with detergents and additives brought in to work with the ridiculous 15,000 mile oil change interval that BMW promoted at the time. At the same time, certain components of the formula were removed or reduced (ZDDP). However, once cars and engines were out of warranty and mileage accumulated the nasty effects of extended oil changes were realized (i.e. oil sludge). LL-01 is compatible with engines approved for LL-98.
+			</>
+			<p>In 2016 BMW announced new 0W30 to replace 5W30. 0W30 carries the same LL-01 approval with a FE label, making it backwards compatible but also making newer models more fuel efficient.</p>
+			<p>
+			<b>LL-04 (2005)</b>. API SM/SN. ACEA C3 (similar to A3). SAE 5W30, 5W40. The LL-04 oils have been greatly misunderstood in the past but this is now in greater demand.  Most LL-04 oils are intended for Diesels, although it was also approved for gas engines in Europe and other world markets. BMW never certified LL-04 for regions outside Europe (Countries that have fuel with high amounts of sulfur and ethanol). Diesel oil has long been valued by engine builders and tuners because of its higher levels of ZDDP and higher HTHS ratings, both are excellent indicators of engine protection at higher temperatures. LL-04 also has a lower SAPS value which is good news for direct-injection engines (all BMW turbo engines since 2007).
+			</p>
+			<p>LL-04 and LL-01 are interchangeable/compatible but LL-04 is preferred for its higher ZDDP and low SAPS. Food for thought: the official BMW Motorsport oil recommendation for the M4 GT4 race car for example is a LL-04 spec oil like the Red Line Euro Series 5W40.
+			</p>
+			<p>			<b>LL-12 (2012)</b>. New specifications for European market Diesel engines
+			</p>
+			<p>			<b>LL-14 (2014)</b>. API SN. ACEA A1/B1. SAE 0W20. Formulated for certain gasoline BMW engines from the 2014 model year, including the N20 four cylinder engine and all new modular B-series engines. The reasoning for the N20 is unpublished but may have to do with making N20 models more fuel efficient and avoiding gas guzzler and CAFE penalties. LL-14 oils have much lower friction levels than all other BMW oils. The HTHS rating is 2.6cP which makes it unsuitable as a performance oil.
+			</p>
+			<p><b>LL-17 (2018)</b>. API SN/SP. ACEA C5. SAE 0W20. Replaces the LL-14 spec for N20, B38, B46, B48, and B58 engines. This appears to be a minor update to the LL-14 formula and designed for improved emissions. Again, not well-suited as a performance oil.
+			</p>
+			<p>
+			<a href="#" class="btn btn-primary">Download summary</a>
+			</p>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

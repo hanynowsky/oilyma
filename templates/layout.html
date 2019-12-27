@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Petrol BMW Oil Selector">
+		<meta name="keywords" content="BMW, oil, BMWLL01, BMWLL04, N52, N42, N46, M54">
+		<meta name="author" content="Hanine HAMZIOUI">
+
+		<title>Oilyma</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymus">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+		<!-- SELECT2 Plugin for auto-complete dropdown --> 
+		<!-- https://select2.org/getting-started/installation -->
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+
+		<!-- Awesome Fonts -->
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- Third party Table sorter plugin DEPRECATED -->
+		<!-- https://github.com/kylefox/jquery-tablesort -->
+		<!-- <script src="/static/jquery.tablesort.js"></script> -->
+
+		<!-- Native HTML datatable Sorting plugin -->
+		<!-- https://www.datatables.net/examples/advanced_init/html5-data-attributes.html -->
+		<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				//$('table').tablesort().data('tablesort').sort($("th.default-sort"), 'asc');
+				$('#results_table').DataTable({
+					"order": [[ 5, "asc" ]]
+				});
+				$('[data-toggle=popover]').popover({
+					html: true,
+					animation: true,
+					container: "body",
+					sanitize: false
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function() {
+				$( "#country" ).select2({
+					//source: {{ countries }}
+				});
+			} );
+		</script>		
+
+		<script>
+			$(document).ready(function() {
+				$('#overlay').hide();
+				var auval = $('#auto').val()
+				if (auval == 0) {
+					document.getElementById('ocons_div').style.display = 'none';
+					document.getElementById('mileage_div').style.display = 'none';
+					document.getElementById('country_div').style.display = 'none';
+				}
+				$( "#auto" ).change( function() {
+					var auto_val = this.value;
+					if (auto_val == 1) {
+						//$("#approval").prop('value', '');
+						//$("#approval").prop('disabled', true);
+
+						$("#grade_div").hide();
+						$("#approval_div").hide();
+
+						$("#ocons").show();
+						$("#mileage").show();
+						$("#country").show();
+						document.getElementById('ocons_div').style.display = 'block';
+						document.getElementById('mileage_div').style.display = 'block';
+						document.getElementById('country_div').style.display = 'block';
+					}
+					else {
+						$("#grade_div").show();
+						$("#approval_div").show();
+						document.getElementById('ocons_div').style.display = 'none';
+						document.getElementById('mileage_div').style.display = 'none';
+						document.getElementById('country_div').style.display = 'none';
+					}
+				});
+			} );
+		</script>
+
+		<!-- Footer CSS-->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='footer.css') }}" />
+		<!-- Main CSS-->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+	</head>
+
+	<nav class="nav nav-tabs">
+		<a class="nav-link active" href="/">Search</a>
+		<a class="nav-link" href="/literature">Literature</a>
+		<a class="nav-link" href="/documents" aria-disabled="false">Documents</a>
+		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Language</a>
+	</nav>
+	<br />
+	{% block body %}
+
+	{% endblock %}
+	<div class='modaloverlay' id='overlay'> </div>
+	<footer class="pt-4 my-md-5 pt-md-5 border-top">
+		<hr />
+		<div class="footer" id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+						<h3> Resources </h3>
+						<ul>
+							<li> <a href="/"> Home </a> </li>
+							<li> <a href="/literature"> Literature </a> </li>
+							<li> <a href="/documents"> Documents </a> </li>
+							<li> <a href="#"> Language </a> </li>
+						</ul>
+					</div>
+					<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+						<h3> Tools </h3>
+						<ul>
+							<li> <a href="#"> HoneyBee </a> </li>
+							<li> <a href="#"> Diagnosis </a> </li>
+							<li> <a href="#"> Programing </a> </li>
+							<li> <a href="#"> Coding </a> </li>
+						</ul>
+					</div>
+					<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+						<h3> Engines </h3>
+						<ul>
+							<li> <a href="/n42"> N42/N46 </a> </li>
+							<li> <a href="#"> M52/M54 </a> </li>
+							<li> <a href="/n52"> N52 </a> </li>
+							<li> <a href="#"> N53 </a> </li>
+						</ul>
+					</div>
+					<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+						<h3> About Us </h3>
+						<ul>
+							<li> <a href="#"> About </a> </li>
+							<li> <a href="#"> Services </a> </li>
+							<li> <a href="#"> References </a> </li>
+							<li> <a href="/contact"> Contact us </a> </li>
+						</ul>
+					</div>
+					<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+						<h3> Newsletter </h3>
+						<ul>
+							<li>
+								<div class="input-append newsletter-box text-center">
+									<input type="text" class="full text-center" placeholder="Email ">
+									<button class="btn  bg-gray" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
+								</div>
+							</li>
+						</ul>
+						<ul class="social">
+							<li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+							<li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+							<li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+							<li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+							<li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+						</ul>
+					</div>
+				</div>
+				<!--/.row-->
+			</div>
+			<!--/.container-->
+		</div>
+		<!--/.footer-->
+
+		<div class="footer-bottom" style='font-size:small;padding-top:1px;padding-bottom:35px;'>
+			<div class="container">
+				<p class="pull-left"> Copyright © OpenTika 2020. All right reserved. </p>
+				<div class="pull-right">
+					<ul class="nav nav-pills payments">
+						<li><i class="fa fa-cc-paypal"></i></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--/.footer-bottom-->
+	</footer>
+</html>

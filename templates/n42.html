@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="jumbotron">
+	<h4>N42.</h4>
+	<p> 
+	The BMW N42 was an inline four-cylinder petrol engine that was available 
+	from 2001 to 2004. The N42 replaced BMW's M43 engine and won the 
+	International Engine of the Year Award in 2001.
+	The N42 engine had an aluminium alloy block and cylinder head, two gear-driven balance shafts, 
+	double overhead camshafts (chain-driven), variable intake and exhaust valve 
+	timing (BMW’s double VANOS), four valves per cylinder, variable intake valve 
+	lift (BMW’s <a href='/valvetronic'>Valvetronic</a>), Bosch Motronic ME 9.2 engine management and a 
+	maximum engine speed of 6500rpm.</p>
+	<p>The N42 engine was also fitted with 
+	a variable intake manifold (BMW’s Differentiated Intake System, or DISA) 
+	which enabled intake pipe length to be adjusted according to engine speed 
+	for more efficient cylinder filling and scavenging
+	</p>
+	<div> <a class="btn btn-primary" href="/">Home</a> </div>
+	<hr />
+</div>
+<div id="carousel_n42" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#carousel_n42" data-slide-to="0" class="active"></li>
+		{% for idx in range(26) %}
+		{% if idx > 0 %}
+		<li data-target="#carousel_n42" data-slide-to="{{ idx }}"></li>
+		{% endif %}
+		{% endfor %}
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img src="/static/n42/bmw_n42_engine_ser1_01.jpg" class="d-block w-100" alt="...">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>BMW N42</h5>
+				<p>Engine Front view.</p>
+			</div>
+		</div>
+		{% for id in range(27) %}
+		{% if id > 0 %}
+		<div class="carousel-item">
+			{% if ((id | int) / 10 < 1) %}
+			<img src="/static/n42/bmw_n42_engine_ser1_0{{ id }}.jpg" class="d-block w-100" alt="...">
+			{% else %}
+			<img src="/static/n42/bmw_n42_engine_ser1_{{ id }}.jpg" class="d-block w-100" alt="...">
+			{% endif %}
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+	<a class="carousel-control-prev" href="#carousel_n42" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carousel_n42" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+{% endblock %}
+

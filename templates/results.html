@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block body %}
+<!--  {'approval': 'BMW LL04', 'dync_5w': '5946', 'flash_point': '228', 'grade': '5W30', 'hths': '3.6', 'label': 'Amsoil ECFSMO I. ESP 5W30', 'mrv': '?', 'noack': '7.1', 'oid': '1', 'pour_point': '-51', 'tbn': '5.7', 'vi': '165', 'visc_100': '11.6', 'visc_40': '68.4', 'vol_mass': '?'}
+-->
+
+<div style='padding:10px'>
+	<div>
+		<div class='jumbotron' style='padding:1rem;'>
+			<b>Selection</b> <span class='badge badge-secondary'> {{grade}} - {{approval}} - {{country}}</span>
+			{% if surname %}
+			<div>Comment <b> {{surname}} </b></div>
+			{% endif %}
+		</div>
+		{% if data|length > 0 %}
+		<table class="table table-hover" id='results_table'>
+			<thead>
+				<tr>
+					<th>Label</th>
+					<th >Approval</th>
+					<th>Grade</th>
+					<th>Visco 100°C</th>
+					<th>Visco 40°C</th>
+					<th class='default-sort'>Volatility</th>
+					<th>Cleaning</th>
+					<th>Fuel Dilution. R</th>
+					<th>Cold Protection</th>
+					<th>Visco. Index</th>
+					<th>Protect&gt;3.5&gt;=F.E</th>
+					<th>Selected</th>
+					<th class="no-sort">Mileage</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for line in data %}
+				<tr {% if line['selected'] %} class="table-default" {% endif %}>
+					<td> 
+						<button id='poppy' type="button" class="btn btn-secondary" data-html="true" data-toggle="popover" data-content="
+							<div id='embedded_table'>
+								<table class='table'>
+									<tr>
+										<th>Pour °C</th>
+										<th>Density</th>
+									</tr>
+									<tr>
+										<td>{{ line['pour_point'] }}</td>
+										<td>{{ line['vol_mass'] }}</td>
+									</tr>
+								</table>
+							</div>" title="<h4>{{line['label']}}</h4>">
+							{{line['label']}}
+						</button>
+					</td>
+					<td>{{ line['approval'] }}</td>
+					<td>{{ line['grade'] }}</td>
+					<td>{{ line['visc_100'] }}</td>
+					<td>{{ line['visc_40'] }}</td>
+					<td data-order="{{ line['noack'] }}" data-sort-value="{{ line['noack'] }}">{{ line['noack'] }}</td>
+					<td>{{ line['tbn'] }}</td>
+					<td>{{ line['flash_point'] }}</td>
+					<td>{{ line['dync_5w'] }}</td>
+					<td>{{ line['vi'] }}</td>
+					<td>{{ line['hths'] }}</td>
+					<td>
+						{% if line['selected'] %}					
+						<span class="badge badge-success"> 
+							<input type='checkbox' checked disabled/>
+						</span>
+						{% else %}
+						<input type='checkbox' disabled />
+						{% endif %}
+					</td>
+					<td>{{ line['mileage'] }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<div class="alert alert-danger" role="alert">
+			No results were found! Please re-think your search
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

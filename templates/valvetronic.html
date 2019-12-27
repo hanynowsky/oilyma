@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class='jumbotron' id='vvl'> 
+	<h4>Valvetronic System <span class="badge badge-secondary">By Scott Manna from MB Automotive</span></h4>
+	<h5> September 2017 </h5>
+	<!--paging_filter--><p>The Otto-cycle 4-stroke internal combustion engine has been around for well over a century and continues to be the main source of propulsion for the automotive and light truck industries. While the basic engine concept has served the needs of the industry so far, there is constant pressure to improve efficiency, emissions and performance of the engines that are used to power vehicles.&nbsp; This article will discuss the refinements that BMW has engineered to the intake system of the gasoline internal combustion engine, or ICE for short.</p>
+	<p><strong>The need</strong><br>
+	If you have studied basic engine design you are aware that a camshaft opens and closes the intake and exhaust valves and that a throttle is used to control engine load, or airflow, through the engine. A typical intake camshaft lobe will open the intake valve around 3/8 of an inch or .375” (9-10mm). This valve lift amount is actually only required for wide open throttle engine operation or full-load. During any other load situation the throttle controls airflow and the maximum valve lift is unnecessary. BMW has demonstrated that 80% of an engine load map can be accomplished with 3mm or less of valve lift.</p>
+	<p>Additionally, as a camshaft turns, its rotation is hindered by the force needed to compress the valve spring. This restriction creates a need for engine power to overcome this restriction. Engineers consider this a “mechanical” loss. Another problem when operating a throttle controlled engine in the low or partial load range is called “pumping” loss, which can be defined as the pressure difference above and below the piston on the intake stroke. The crankcase is under only a very slight vacuum controlled by the crankcase ventilation system, say 13.5 to 14 psi. When the intake valve opens at idle or low load, the top of the piston is exposed to intake manifold pressure which may be only 4-5 psi. The difference in pressure would want to move the piston up if it were not connected to the crankshaft. But in a running engine, the crankshaft will pull the piston down against this pressure differential and uses some of the engine’s power to do so.</p>
+	<p><strong>Background and operation</strong></p>
+	<p>BMW has developed a fully mechanical system using an electronically driven eccentric shaft and an intermediate lever to control intake valve lift and duration, thereby greatly reducing these losses during partial load conditions. This system is called Valvetronic and to date there are 3 generations of the system.</p>
+	<p>BMW first introduced Valvetronic in 2002 on the N62 V\8 engine and the N73 V\12 engine. In 2006 the newly redesigned in-line six cylinder dubbed the N52 was fitted with the second generation Valvetronic system. In 2010 the system saw an extensive re-design for the in-line six cylinder N55 engine and the new 4-cylinder N-20 engine, which is considered the third generation Valvetronic design.</p>
+	<p>Valvetronic has been adapted to 4-, 6-, 8- and 12-cylinder engines and can be found on most current production BMW cars and SUV’s. The system operates on the “lost motion” principle, meaning that there is a conventional intake camshaft but through the use of the added eccentric shaft and intermediate lever only a portion of the effective cam lobe profile may be used during any given intake stoke. If only a partial portion of the cam lobe is utilized, the intake valve lift and duration will be reduced. The intake valve will open later, close sooner and the valve lift will be less. This allows the engine airflow and hence load to be controlled at the intake port by the amount of valve lift rather than by the amount of throttle opening. BMW calls this throttle-free load control.</p>
+	<table style="width: 400px;" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_actuator.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_actuator.jpg" style="width: 400px; height: 300px;"></a></td>
+			</tr>
+			<tr>
+				<td>
+					The Valvetronic servo-motors are circled and clearly visible in this picture of a 550i, N62 4.8 Liter V/8 engine.</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>The rotation of the eccentric shaft pushes the intermediate lever closer to the camshaft. This changes the pivot point of the intermediate lever that acts upon the roller follower which opens and closes the valve. The special tapered profile of the bottom of the intermediate lever allows the valve lift to vary between 0.3 millimeters and 9.85 millimeters. The reversible, high speed direct current servo-motor can vary from minimum lift to maximum lift in 300 milliseconds and operates at a frequency of 16khz. Because the cylinder charge airflow is being controlled by how far the valve lifts from its seat and not by the position of the throttle plate, valve lift differences between cylinders is critical and must be held to a very close tolerance to avoid a rough idle or misfire at idle.</p>
+	<p>One of the main problems with the first generation Valvetronic system was the contact point between the intermediate lever and eccentric shaft. This point is a sliding contact pad and was susceptible to wear if oil maintenance was neglected. This contact point is subjected to the pressure applied by the closing pressure of the valve spring pushing up on the roller follower and intermediate lever. As this contact point wears, the actual valve lift will decrease and cylinder-to-cylinder air intake quantities will vary and cause idle roughness.</p>
+	<table style="width: 400px;" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_ilever.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_ilever.jpg" style="width: 400px; height: 300px;"></a></td>
+			</tr>
+			<tr>
+				<td>
+					Gen 2 intermediate lever with roller interface at top, against the retainer called a gate block.</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>Because of this wear issue there was a BMW scan tool function that would allow the technician to change the minimum lift setting of the Valvetronic system from .3mm to .8mm to see if the engine ran smoother. This change effectively made the engine a throttle controlled engine at idle. If the engine ran better, a thorough inspection of the Valvetronic system was necessary. In order to eliminate this problem, the intermediate lever was re-designed and a roller was added at this interface point. This is the primary difference between 1<sup>st</sup> and 2<sup>nd</sup> generation systems.</p>
+	<p>The other primary difference is a lowering of the minimum valve lift setting to .18mm or about 7 thousandths of an inch. With the engine running at minimum lift during idle operation the actual intake valve movement is almost imperceptible.</p>
+	<table style="width: 400px;" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_2.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_2.jpg" style="width: 400px; height: 214px;"></a></td>
+			</tr>
+			<tr>
+				<td>
+					The Gen 2 valvetronic system, the intermediate lever roller is shown. The lever is seen in min and max lift positions<em>.</em></td>
+			</tr>
+		</tbody>
+	</table>
+	<!--pagebreak-->
+	<p>The Valvetronic system also incorporates phasing into the valve opening event to improve charge motion in the cylinder and allow for better air\fuel mixing. Phasing can differ slightly among different generations of Valvetronic. At minimum lift, one valve can open while the other stays closed. As lift increases the valves may open together then one valve can lead, or open further than the other and then the second valve will catch up to the first near the end of the opening event.</p>
+	<table style="width: 400px;" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_vvl.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_vvl.jpg" style="width: 400px; height: 190px;"></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<p>The Valvetronic eccentric shaft has minimum and maximum end stops built into the cylinder head to limit rotation. On the 6 cylinder N52, the minimum stop is screwed into the cylinder head and the maximum stop is a cast portion of the head. The Digital Motor Electronics, or DME, computer will learn the end stops when an implausible value is determined during the start procedure. A scan tool may also be used to run the limit learn procedure. This should be done anytime the valvetrain is disturbed or serviced.</p>
+	<p>SERVICE NOTE:&nbsp; Keep in mind the servo-motor must be removed to replace a valve cover gasket on these engines. The motor is under a preload with the engine off and the eccentric shaft should be placed in the minimum lift position prior to removing the servo-motor. The scan tool can command this position on 1<sup>st</sup> generation systems. On 2<sup>nd</sup> generation systems there is a 4mm Allen socket built into the end of the motor armature and is accessible at the rear of the servo-motor. The motor should be unplugged and the armature turned clockwise to the minimum lift position prior to removing. If the motor retention bolts are removed without performing this step the motor could be shot out of the cylinder head cover and the eccentric shaft gear teeth may be damaged causing a very expensive mistake.</p>
+	<p>The DME must know the position of the eccentric shaft at all times. This is accomplished with the use of an eccentric shaft position sensor. V engines will have two sensors, one for each bank, while only one is needed on the in-line six engine. This sensor is a complex magneto-resistive device with two sensors monitoring the position of a magnetic wheel mounted on the end of the eccentric shaft. One sensor is called the measuring sensor and the other the evaluation sensor. The measuring sensor is checked more frequently and the evaluation sensor is used for plausibility. This sensor transmits data and is not a linear device like a throttle position sensor, so scope testing the sensor will not reveal the eccentric shaft position to a technician although it is an interesting device to scope. The scan tool can be used to monitor eccentric shaft position which is usually displayed in degrees of rotation from zero degrees, (min stop) to about 225 degrees, (max stop).</p>
+	<p>SERVICE NOTE:&nbsp; This sensor protrudes through the valve cover and is easily damaged during valve cover service. They are expensive so be very careful during service. Many of the N52 six cylinder engines have problems with oil intrusion into the sensor so a good idea during any service requiring valve cover removal is to check for oil in the sensor wiring plug connection. If oil is found then sensor replacement is recommended.</p>
+	<table style="width: 400px;" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_ess.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_ess.jpg" style="width: 400px; height: 300px;"></a></td>
+			</tr>
+			<tr>
+				<td>
+					Eccentric shaft mounted on N52 head with valve cover removed.</td>
+			</tr>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_ess_magnet.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_ess_magnet.jpg" style="width: 400px; height: 300px;"></a></td>
+			</tr>
+			<tr>
+				<td>
+					Eccentric shaft sensor magnetic wheel seen with sensor removed.</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>The third generation valvetronic system saw major changes in design. Gone is the large DC servo-motor, replaced by a much smaller AC current brushless motor that is more efficient and responsive. Also gone is the eccentric shaft position sensor. The brushless servo-motor has an integral position sensor. The third generation design is more compact and the servo-motor sits in a well in the cylinder head and is exposed to engine oil. The rapid response of the brushless motor allows BMW to claim cylinder selective lift adjustment to improve engine smoothness and idle quality along with idle speed control.</p>
+	<p><strong>Additional service notes</strong></p>
+	<p>As already mentioned, the concept of throttling the engine at the intake port allows for high manifold pressure, or low vacuum, at idle or low load conditions which reduces pumping losses. While the engine could run with atmospheric pressure in the intake at idle, there is a requirement to have a small vacuum present to allow for crankcase ventilation and charcoal canister purging. The DME targets 50 millibar of vacuum at idle which is equal to about 1.5 in/hg of manifold vacuum. This vacuum is maintained by adjusting the throttle angle to about 3.5 to 4 percent at idle. While the throttle appears mostly closed, the airflow through the engine at idle is a function of valve lift, not throttle opening.</p>
+	<p>There is a differential pressure sensor on the intake manifold that reads actual vacuum, not Manifold Absolute Pressure like most manifold pressure sensors. The scan tool will display 0 to 1 millibar at key on engine off, not 980 to 1000 millibar which would be atmospheric pressure. Normal idle should produce 40-50 millibar readings.</p>
+	<p>If the engine is a turbo, the pressure sensor will read like a MAP sensor and show almost 1000 millibar at key on engine off so pay attention to what the manifold pressure reading is with the engine off to determine which type of sensor is used on the engine you’re working on. This is important because the pressure sensor value will let you know if the engine is running in Valvetronic control or throttle control. If an engine fault occurs such as a VANOS problem, the engine will default to throttle load control and the manifold sensor will read approximately 600 to 690 millibar of vacuum, the eccentric shaft will be close to maximum lift. &nbsp;While idling, if the eccentric shaft position reads less than 30 degrees and manifold pressure is 50 millibar then the engine is running in Valvetronic control. It is crucial to understand the difference when diagnosing running problems on this system.</p>
+	<!--pagebreak-->
+	<p>When a Valvetronic equipped engine is shut off the eccentric shaft will reset to a position that will allow greater valve opening than the minimum lift position to aid in starting. This is similar to how the idle air control motor is reset to a mid-travel position for the next start when the engine is shut off on GM fuel injected engines. This eccentric shaft position for starting is about 57 degrees on the in-line six cylinder engines.</p>
+	<p>One more area of interest to mention is compression testing a valvetronic equipped engine. Because the valve lift is controlled by the position of the eccentric shaft one would assume that BMW has a procedure to set the valve lift at a certain point to reach the expected compression pressure and this would be a correct assumption. There is a compression test procedure in the ISTA factory scan tool that has you adjust the eccentric shaft by turning the servo-motor with an Allen wrench until the eccentric shaft is at 176 degrees. This is done with the motor un-plugged. Once the eccentric shaft is set you continue with testing as you would any other engine. Normal compression values on the N52 engines are about 200-210 psi. Higher compression values can be seen with the eccentric shaft set at a lower lift position because the valve can close sooner and this will raise the effective compression stroke. I have measured over 220 psi at lower lift settings of around 100 degrees on the N52 engines.</p>
+	<p><strong>Scoping valvetronic</strong></p>
+	<p>The scope pattern seen in the accompanying illustration is the scan tool commanding a valvetronic limit learn procedure. The two lower waveforms are the voltage patterns from each of the two motor wires and the upper waveform is motor current captured from one of the wires.</p>
+	<table style="width: 400px;" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<a class="colorbox initColorbox-processed" href="/static/valvetronic_diagram.jpg" rel="nofollow"><img alt="" src="/static/valvetronic_diagram.jpg" style="width: 400px; height: 225px;"></a></td>
+			</tr>
+			<tr>
+				<td>
+					Waveform of a Valvetronic system learning the end stops.</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>As the waveform shows, the bottom channel voltage is pulsed and the other channel above is held to ground to spin the motor to the end stop. When the current flatlines at the point marked 35 amps, the minimum end stop is learned. The polarity is then reversed, the middle waveform is pulsed to voltage while the bottom waveform is held at ground. The motor spins until the shaft reaches the maximum end stop and current flatlines again at 44 amps. These are known good values from a new servo-motor. The whole procedure lasts about 1.5 seconds.</p>
+	<p>The most common failures I have seen are bad eccentric shaft sensors. The servo-motors can go bad and will probably set over temperature codes for the motor drivers in the DME. Always check for service bulletins if a car sets Valvetronic system codes as there have been many programming updates to cure system codes. Get to know these systems because it seems they will be around for the foreseeable future on BMW engines.</p>
+
+
+
+</div>
+{% endblock %}
