@@ -1,30 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
-<nav id="literature_hooks" class="navbar navbar-light bg-light">
-	<a class="navbar-brand" href="#footer">&darr;</a>
+<nav id="literature_hooks" class="navbar navbar-light bg-light" >
+	<!--<a class="navbar-brand" href="#footer">&darr;</a>-->
 	<ul class="nav nav-pills">
 		<li class="nav-item">
-			<a class="nav-link" href="#visco_card">Viscocity Grade</a>
+			<a class="nav-link" data-toogle='tooltip' title='High Temperature High Shear (Fuel Efficiency vs protection)' href="#hths_card">HTHS</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#hths_card">High Shear</a>
+			<a class="nav-link" data-toogle='tooltip' title='Volatility' href="#noack_card">Noack</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#noack_card">Volatility</a>
+			<a class="nav-link" data-toogle='tooltip' title='Total base Number (Sludge Cleaning)' href="#tbn_card">TBN</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#tbn_card">Sludge Cleaning</a>
+			<a class="nav-link" data-toogle='tooltip' title='Viscocity Index' href="#vi_card">VI</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#vi_card">Viscocity Index</a>
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#approvals_card" role="button" aria-haspopup="true" aria-expanded="false">Approvals</a>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#approvals_card">BMWLL01</a>
-				<div role="separator" class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#approvals_card">BMWLL04</a>
-			</div>
+		<li class="nav-itemn">
+			<a class="nav-link" data-toggle="tooltip" title='Approvals'  href="#approvals_card">App</a>
 		</li>
 	</ul>
 </nav>
@@ -34,13 +26,14 @@
 		<img width="100"  src="https://www.ato24.de/media/catalog/product/cache/3/image/85e4522595efc69f496374d01ef2bf13/b/m/bmw-5w-30-longlife-01-1-l.jpg" class="align-self-start mr-3" alt="LongLife Oil">
 		<div class="media-body">
 			<h5 class="mt-0">Viscosity</h5>
-			<p class='card-text'>Since not long ago, car engines have been running on multigrade oil. Which is usually a blend of conventional oil with synthetic oil or ideally a full synthetic oil produced through hydrocracking, natural gas conversion or ester synthesis...</p>
-			<p>What you need to know is simple. A multigrade oil has two viscosity grades one for winter temperatures and the second for when the engine is at operating temperature.
+			<p class='card-text' style='margin-right:15px;'>Since not long ago, car engines have been running on multigrade oil. Which is usually a blend of conventional oil with synthetic oil or ideally a full synthetic oil produced through hydrocracking, natural gas conversion or ester synthesis...
+			What you need to know is simple. A multigrade oil has two viscosity grades one for winter temperatures and the second for when the engine is at operating temperature.
 			The video below explains very well how a multigrade oil acts on a car engine.
-			It was created by a former automotive engineer through which he explains the role of engine oil and the application of multigrade blends on today's engines.</p>
-			<p>As you look at this <a href='/static/viscosity-guide.png'>chart</a> you come to the conclusion that the best oil is the one that covers the widest range. Not true! In fact you want to find the oil that best fits your climate with the smallest range. The lower or "w" number is all about start up when cold. Diesel engines for example are notoriously hard starters, add thick, cold oil and its even harder. Thinner viscosity oils flow better but are less likely to "stick and coat" to the metal parts needing the oil. 5w viscosity does provide the start up lubricity that a 10w or 20w provides. As you look at the second number you want to look at the average operating temperatures and frequency of above normal (90-100°C) operating temperatures</p>	
+			It was created by a former automotive engineer through which he explains the role of engine oil and the application of multigrade blends on today's engines.
+			As you look at this <a href='/static/viscosity-guide.png'>chart</a> you come to the conclusion that the best oil is the one that covers the widest range. Not true! In fact you want to find the oil that best fits your climate with the smallest range. The lower or "w" number is all about start up when cold. Diesel engines for example are notoriously hard starters, add thick, cold oil and its even harder. Thinner viscosity oils flow better but are less likely to "stick and coat" to the metal parts needing the oil. 5w viscosity does provide the start up lubricity that a 10w or 20w provides. As you look at the second number you want to look at the average operating temperatures and frequency of above normal (90-100°C) operating temperatures</p>	
+			<div><iframe style='margin:5px;width:auto;'  src="https://youtube.com/embed/aRvZyIPKR90" scrolling="no" allowfullscreen></iframe></div>
 		</div>
-		<iframe style='margin:5px;'  src="https://youtube.com/embed/aRvZyIPKR90" scrolling="no" allowfullscreen></iframe>
+		<br />
 	</div>
 
 	<div class="card" id='hths_card'>

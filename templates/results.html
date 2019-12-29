@@ -18,6 +18,7 @@
 					<th>Label</th>
 					<th >Approval</th>
 					<th>Grade</th>
+					<th>Selected</th>
 					<th>Visco 100°C</th>
 					<th>Visco 40°C</th>
 					<th class='default-sort'>Volatility</th>
@@ -26,7 +27,6 @@
 					<th>Cold Protection</th>
 					<th>Visco. Index</th>
 					<th>Protect&gt;3.5&gt;=F.E</th>
-					<th>Selected</th>
 					<th class="no-sort">Mileage</th>
 				</tr>
 			</thead>
@@ -34,7 +34,7 @@
 				{% for line in data %}
 				<tr {% if line['selected'] %} class="table-default" {% endif %}>
 					<td> 
-						<button id='poppy' type="button" class="btn btn-secondary" data-html="true" data-toggle="popover" data-content="
+						<button id='poppy' type="button" class="btn btn-secondary" data-html="true" data-toggle="popover" data-placement="top" data-content="
 							<div id='embedded_table'>
 								<table class='table'>
 									<tr>
@@ -52,14 +52,6 @@
 					</td>
 					<td>{{ line['approval'] }}</td>
 					<td>{{ line['grade'] }}</td>
-					<td>{{ line['visc_100'] }}</td>
-					<td>{{ line['visc_40'] }}</td>
-					<td data-order="{{ line['noack'] }}" data-sort-value="{{ line['noack'] }}">{{ line['noack'] }}</td>
-					<td>{{ line['tbn'] }}</td>
-					<td>{{ line['flash_point'] }}</td>
-					<td>{{ line['dync_5w'] }}</td>
-					<td>{{ line['vi'] }}</td>
-					<td>{{ line['hths'] }}</td>
 					<td>
 						{% if line['selected'] %}					
 						<span class="badge badge-success"> 
@@ -69,6 +61,14 @@
 						<input type='checkbox' disabled />
 						{% endif %}
 					</td>
+					<td>{{ line['visc_100'] }}</td>
+					<td>{{ line['visc_40'] }}</td>
+					<td data-order="{{ line['noack'] }}" data-sort-value="{{ line['noack'] }}">{{ line['noack'] }}</td>
+					<td>{{ line['tbn'] }}</td>
+					<td>{{ line['flash_point'] }}</td>
+					<td>{{ line['dync_5w'] }}</td>
+					<td>{{ line['vi'] }}</td>
+					<td>{{ line['hths'] }}</td>
 					<td>{{ line['mileage'] }}</td>
 				</tr>
 				{% endfor %}
