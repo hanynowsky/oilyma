@@ -23,7 +23,33 @@ class Utilz:
         country_continent_name = pc.convert_continent_code_to_continent_name(country_continent_code)
         return country_continent_name
 
+    def kw_to_hp(self, kw=1):
+        """  Kilowatts to Horse Power
+        """
+        hp = float(kw) * 1.35962 
+        return hp
+
+    def pw_ratio(self, power=None, weight=None, cylinder=None):
+        """  Computes Power to weight ratio.
+            - weight: in kilograms
+            - power: in horse power
+            - Cylinder: in in cc3
+            -- Threshold for Torque is 100nm per 1 Liter of Cylinder
+            -- An ideal power to weight ratio = 1.0
+        """
+        pwr, target_torque = 0.0, 0.0
+        for val in [power, weight, cylinder]:
+            if val is None:
+                return 0.0, 0.0
+        
+        pwr = (float(power) / (weight * 2.205) ) * 10
+        target_torque = float(cylinder) * 100
+        return round(pwr, 2), round(target_torque, 2)
 
 
-#toto = Utilz()
+toto = Utilz()
+
 #print(toto.country_to_continent('azerbaijan'))
+
+#pwr, tt = toto.pw_ratio(power=115, weight=1375, cylinder=1.8)
+#print(pwr, tt)
