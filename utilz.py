@@ -47,9 +47,8 @@ class Utilz:
         return round(pwr, 2), round(target_torque, 2)
 
 
-toto = Utilz()
+#toto = Utilz()
 
 #print(toto.country_to_continent('azerbaijan'))
-
 #pwr, tt = toto.pw_ratio(power=115, weight=1375, cylinder=1.8)
 #print(pwr, tt)
