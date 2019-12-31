@@ -42,7 +42,7 @@ class Utilz:
             if val is None:
                 return 0.0, 0.0
         
-        pwr = (float(power) / (weight * 2.205) ) * 10
+        pwr = (float(power) / (float(weight) * 2.205) ) * 10
         target_torque = float(cylinder) * 100
         return round(pwr, 2), round(target_torque, 2)
 
@@ -50,5 +50,5 @@ class Utilz:
 #toto = Utilz()
 
 #print(toto.country_to_continent('azerbaijan'))
-#pwr, tt = toto.pw_ratio(power=115, weight=1375, cylinder=1.8)
+#pwr, tt = toto.pw_ratio(power='115', weight='1375', cylinder='1.8')
 #print(pwr, tt)

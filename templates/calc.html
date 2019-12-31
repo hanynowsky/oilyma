@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="jumbotron">
+</div>
+
+
+<form method="POST" >
+	<div class="input-group mb-3">
+		<div class="input-group-append">
+			<span class="input-group-text">Cylinder Capacity</span>
+			<span class="input-group-text" id='cp_val'>cc</span>
+		</div>
+		<input type="range" min="1" max="6.9" step='0.1' value="1.8" class="custom-range" id="cp_range" name='cp_range'>
+	</div>
+
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Weight (kgs)</span>
+		</div>
+		<input type="number" value='1375' class='form-control' aria-label='Vehicle weight in Kgs' name="vw_input" id='vw_input' min='1000' max='3000' step="5">
+	</div>
+
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Horse Power</span>
+		</div>
+		<input type="number" value='115' class='form-control' aria-label='Engine Horse Power' name="hp_input" id='hp_input' min='90' max='1000' step="5">
+	</div>
+	<!--<button id='calc_button' type="submit" class="btn btn-primary">Submit</button>-->
+	<button id='calc_button' type="button" class="btn btn-primary">Submit</button>
+</form>
+
+<div  id='pwr_results' >
+	{% include 'calc_results.html' %}
+	
+</div>
+	<script>
+		$(document).ready(function(){
+			// TODO handle when slider is null
+			$('#overlay').hide();
+			$('#pwr_results').hide();
+			var slider = document.getElementById("cp_range");
+			var output = document.getElementById("cp_val");
+			output.innerHTML = slider.value; // Display the default slider value
+
+			// Update the current slider value (each time the slider handle is dragged)
+			slider.oninput = function() {
+				output.innerHTML = this.value + ' cc';
+			}
+		});
+	</script>
+	<script type='text/javascript'>
+		$('#calc_button').click(function(){
+			$('#overlay').show();
+			$.ajax({
+				url: "/calc",
+				type: "POST",
+				data: $('form').serialize(), // or $('this')
+				success: function(resp){
+					$('#overlay').hide();
+					$('#pwr_results').show();
+					$('#pwr_td').html(resp.data['pwr']);
+					$('#target_torque_td').html(resp.data['target_torque']);
+					console.log(resp);
+					console.log(resp.data)
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log("Status: " + textStatus); 
+					console.log("Error: " + errorThrown);
+				}
+			});
+		});
+	</script>
+	{% endblock %}

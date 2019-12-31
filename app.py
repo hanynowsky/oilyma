@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 
 import oilyma
 import utilz
@@ -7,6 +7,7 @@ import json
 app = Flask(__name__)
 
 APPLICATION_NAME = 'oilyma'
+debug= False
 
 @app.route("/result")
 def results():
@@ -60,15 +61,36 @@ def n42():
 def valvetronic():
     return render_template('valvetronic.html', dicto={'name':APPLICATION_NAME})
 
-@app.route("/contact")
-def contact_us():
-    return render_template('contact.html', dicto={'name':APPLICATION_NAME})
+@app.route("/calc", methods=['PUT', 'POST', 'GET'])
+def calc():
+    hp, cc, weight = 80, 1.0, 900
+    if debug:
+        print('REQUEST', len(request.args), len(request.form), request.data, request.method, request.json)
+    if str(request.method) == 'GET':
+        return render_template('calc.html', dicto={'name':APPLICATION_NAME})
+    if str(request.method) == 'POST':
+        if request.form:
+            hp = request.form['hp_input']
+            cc = request.form['cp_range']
+            weight = request.form['vw_input']
+        if request.args.get('hp_input'):
+            hp = request.args.get('hp_input')
+        if request.args.get('cp_range'):
+            cc = request.args.get('cp_range')
+        if request.args.get('vw_input'):
+            weight = request.args.get('vw_input')
+        if debug:
+            print('ARGS', weight, hp, cc)
+        toto = utilz.Utilz()
+        pwr, target_torque = toto.pw_ratio(weight=weight, power=hp, cylinder=cc)
+        if debug:
+            print(pwr, target_torque)
+        #return jsonify({'data': render_template('calc_results.html', pwr=pwr, target_torque=target_torque, dicto={'name':APPLICATION_NAME})})
+        return jsonify({'data': {'pwr':pwr, 'target_torque':target_torque}})
 
 @app.route("/hello/<string:name>/")
 def hello(name):
     return render_template('index.html', name=name)
-
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
