@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<div id="carousel_m54" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#carousel_m54" data-slide-to="0" class="active"></li>
+		{% for idx in range(26) %}
+		{% if idx > 0 %}
+		<li data-target="#carousel_m54" data-slide-to="{{ idx }}"></li>
+		{% endif %}
+		{% endfor %}
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img src="/static/m54/m54.jpg" class="d-block w-100" alt="...">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>BMW M54</h5>
+				<p>Engine view.</p>
+			</div>
+		</div>
+		{% for id in range(20) %}
+		{% if id > 0 %}
+		<div class="carousel-item">
+			{% if ((id | int) / 10 < 1) %}
+			<img src="/static/m54/bmw_m54_0{{ id }}.jpg" class="d-block w-100" alt="...">
+			{% else %}
+			<img src="/static/m54/bmw_m54_{{ id }}.jpg" class="d-block w-100" alt="...">
+			{% endif %}
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+	<a class="carousel-control-prev" href="#carousel_m54" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carousel_m54" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+
+<div class="jumbotron">
+	<p>The BMW M54 (2000-2006) is an internal combustion inline-six petrol engine. Being manufactured for the BMW X5 (E53), it’s a substitute for the M52 engine.</p>
+
+	<p>In 2002 and 2003, it became one of the greatest engines, according to the list of 10 Best Engines by Ward’s. The BMW S54 is the identical high-performance engine, employed for the E46 M3, the Z4 M, and the Z3 M Coupe/Roadster. The BMW M56 SULEV is built on a basis of the M54, which production gradually stopped after the launch of the N52 in 2004.</p>
+
+	<p>The M54B25 is one of the most famous engines of the M54 series, the construction of which started in 2000 and appeared to be an excellent substitute for the M52TUB25. This series is also known for M54B22, M54B30 and S54B32 models. M54B25 and M54B30 differ in their displacement because they feature different crankshafts, which connect pistons and rods. Simultaneously, many other details are distinct, including intake manifolds, injectors, camshafts, throttles, and ECU.</p>
+
+	<p>The aluminum cylinder block of the latest engine is similar, featuring sleeves made of cast iron and crankshaft. In addition, it has longer connecting rods than the earlier modification, which is 145 mm long. Meanwhile, the latest variant of the engine has lighter pistons.</p>
+
+	<p>The other similar characteristic is the double VANOS cylinder blockhead. The newer engine has a 10 mm shorter intake manifold. The increased power of the motor is reached thanks to broad ports and channels. Besides, the engine features electronic control of throttle and electronic control unit Siemens MS43/Siemens MS45/Siemens MS45.1.</p>
+
+	<p>Mostly, the M54b25 was employed for the 25i cars of the BMW brand.</p>
+
+	<p>Unfortunately, the engine turned out to be non-competitive with the later motor variations, released in 2005-2006. Newer modifications of 2.5L N52B25 engines proved to be more efficient. </p>
+</div>
+{% endblock %}

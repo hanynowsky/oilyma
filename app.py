@@ -57,9 +57,38 @@ def n52():
 def n42():
     return render_template('n42.html', dicto={'name':APPLICATION_NAME})
 
+@app.route("/n46")
+def n46():
+    return render_template('n42.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/m54")
+def m54():
+    return render_template('m54.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/m52")
+def m52():
+    return render_template('m54.html', dicto={'name':APPLICATION_NAME})
+
 @app.route("/valvetronic")
 def valvetronic():
     return render_template('valvetronic.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/about")
+def about():
+    return render_template('about.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/services")
+def services():
+    return render_template('services.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/references")
+def references():
+    return render_template('references.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/n53")
+def n53():
+    return render_template('n53.html', dicto={'name':APPLICATION_NAME})
+
 
 @app.route("/calc", methods=['PUT', 'POST', 'GET'])
 def calc():
