@@ -89,6 +89,10 @@ def references():
 def n53():
     return render_template('n53.html', dicto={'name':APPLICATION_NAME})
 
+@app.route("/contact")
+def contact():
+    return render_template('contact.html', dicto={'name':APPLICATION_NAME})
+
 
 @app.route("/calc", methods=['PUT', 'POST', 'GET'])
 def calc():
