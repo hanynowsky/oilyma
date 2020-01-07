@@ -9,6 +9,10 @@ app = Flask(__name__)
 APPLICATION_NAME = 'oilyma'
 debug= False
 
+@app.route("/hello/<string:name>/")
+def hello(name):
+    return render_template('index.html', name=name)
+
 @app.route("/result")
 def results():
     oto = oilyma.Oilyma()
@@ -93,6 +97,30 @@ def n53():
 def contact():
     return render_template('contact.html', dicto={'name':APPLICATION_NAME})
 
+@app.route("/tools")
+def tools():
+    return render_template('tools.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/vehicles")
+def vehicles():
+    return render_template('vehicles.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/cars")
+def car_search():
+    return render_template('car_search.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/diagnosis")
+def diagnosis():
+    return render_template('diagnosis.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/coding")
+def coding():
+    return render_template('coding.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/programing")
+def programing():
+    return render_template('programing.html', dicto={'name':APPLICATION_NAME})
+
 
 @app.route("/calc", methods=['PUT', 'POST', 'GET'])
 def calc():
@@ -120,10 +148,6 @@ def calc():
             print(pwr, target_torque)
         #return jsonify({'data': render_template('calc_results.html', pwr=pwr, target_torque=target_torque, dicto={'name':APPLICATION_NAME})})
         return jsonify({'data': {'pwr':pwr, 'target_torque':target_torque}})
-
-@app.route("/hello/<string:name>/")
-def hello(name):
-    return render_template('index.html', name=name)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)

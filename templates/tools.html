@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="jumbotron" style='text-align:center;'>
+	<h1>Tools {{name}} !</h1>
+	<div class="list-group">
+		<a href='https://www.auto-data.net/en/bmw-brand-86' class="list-group-item active">
+			<h4 class="list-group-item-heading">Vehicle Catalog</h4>
+			<p class="list-group-item-text">Vehicle Catalog from Auto-Data.</p>
+		</a>
+		<a href='http://bmwfans.info/parts-catalog' class="list-group-item">
+			<h4 class="list-group-item-heading">BMW Parts Catalog</h4>
+			<p class="list-group-item-text">BMW Parts Catalog based on ETK.</p>
+		</a>
+		<a href='https://www.michelinman.com/tires' class="list-group-item">
+			<h4 class="list-group-item-heading">Tires Finder</h4>
+			<p class="list-group-item-text">Tires Search per Vehicle.</p>
+		</a>
+		<a href='http://www.bmwstylewheels.com/' class="list-group-item">
+			<h4 class="list-group-item-heading">BMW Rims Reference</h4>
+			<p class="list-group-item-text">BMW rims information.</p>
+		</a>
+	</div>
+</div>
+{% endblock %}

@@ -18,6 +18,11 @@ class Utilz:
         """  Returns Continent for a givien Country
         """
         country_name = country_name.lower().capitalize()
+        cname = ''
+        if len(country_name.split(' ')) > 1: # Handle when name is composite
+            for element in country_name.split(' '):
+                cname = cname + element.capitalize() + ' '
+            country_name = cname.strip()
         country_alpha2 = pc.country_name_to_country_alpha2(country_name)
         country_continent_code = pc.country_alpha2_to_continent_code(country_alpha2)
         country_continent_name = pc.convert_continent_code_to_continent_name(country_continent_code)
@@ -49,6 +54,6 @@ class Utilz:
 
 #toto = Utilz()
 
-#print(toto.country_to_continent('azerbaijan'))
+#print(toto.country_to_continent('United Kingdom'))
 #pwr, tt = toto.pw_ratio(power='115', weight='1375', cylinder='1.8')
 #print(pwr, tt)
