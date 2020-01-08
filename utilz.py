@@ -51,8 +51,33 @@ class Utilz:
         target_torque = float(cylinder) * 100
         return round(pwr, 2), round(target_torque, 2)
 
+    def fuel_cons(self, mileage, cost, up, cons):
+        """ Calculates Expected mileage by fuel consumption.
+        """
+        if True:
+            if cost is None or cost == '':
+                try:
+                    f_tank = round(float( (float(cons) * float(mileage)) / 100 ), 2)
+                    exp_mileage = round( ((f_tank * 100) / float(cons)), 2)
+                    t_cons = round( ((f_tank * 100) / float(mileage)), 2)
+                    exp_cost = float(float(up) * f_tank) 
+                    return f_tank, exp_mileage, t_cons, exp_cost
+                except Exception as ex:
+                    print('TRIP COST UTILITY Failed', ex)
+                    return 0.0, 0.0, 0.0, 0.0
+            else:
+                try:
+                    f_tank = round(float(float(cost) / float(up)), 2)
+                    exp_mileage = round( ((f_tank * 100) / float(cons)), 2)
+                    t_cons = round( ((f_tank * 100) / float(mileage)), 2)
+                    return f_tank, exp_mileage, t_cons
+                except Exception as ex:
+                    print('FUEL CONSUMPTION UTILITY Failed', ex)
+                    return 0.0, 0.0, 0.0
 
 #toto = Utilz()
+#print(toto.fuel_cons(99.1, 100, 11.08, 7.9))
+
 
 #print(toto.country_to_continent('United Kingdom'))
 #pwr, tt = toto.pw_ratio(power='115', weight='1375', cylinder='1.8')

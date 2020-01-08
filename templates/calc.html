@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="jumbotron">
-	<p>Calculate your vehicle's Power to Weight ratio as well as the required minimal torque.</p>
+<div class='header'> 
+	<a href='#calc_form'><button id='pwr_jump_button' type="button" class="btn btn-light">PWR</button></a>
+	<a href='#fuel_cons_form'><button id='fuel_cons_jump_button' type="button" class="btn btn-light">Fuel Consumption</button></a>
+</div>
+<div class="alert alert-light" role="alert">
+	Calculate your vehicle's Power to Weight ratio as well as the required minimal torque.
 </div>
 
-<form method="POST" >
+<form method="POST" id='calc_form'>
 	<div class="input-group mb-3">
-		<div class="input-group-append">
+		<div class="input-group-prepend">
 			<span class="input-group-text">Cylinder Capacity</span>
 			<span class="input-group-text" id='cp_val'>L</span>
 		</div>
@@ -15,9 +19,12 @@
 
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text">Weight (kgs)</span>
+			<span class="input-group-text">Weight</span>
 		</div>
 		<input type="number" value='1375' class='form-control' aria-label='Vehicle weight in Kgs' name="vw_input" id='vw_input' min='1000' max='3000' step="5">
+		<div class="input-group-append">
+			<span class="input-group-text">kgs</span>
+		</div>
 	</div>
 
 	<div class="input-group mb-3">
@@ -34,41 +41,120 @@
 	{% include 'calc_results.html' %}
 
 </div>
-	<script>
-		$(document).ready(function(){
-			// TODO handle when slider is null
-			$('#overlay').hide();
-			$('#pwr_results').hide();
-			var slider = document.getElementById("cp_range");
-			var output = document.getElementById("cp_val");
-			output.innerHTML = slider.value + 'L'; // Display the default slider value
+<hr />
+	<div class="alert alert-light" role="alert">
+		Calculate Your fuel consumption by entering the mileage driven, the total cost of the gas station provision, the unit price for one liter of gasoline and the fuel consumption rate of your trip in L/100km.
+		<span class="badge badge-secondary">
+			<small><em> Leave COST field empty, if you want to calculate a trip expected cost</em></small>
+		</span>
+	</div>
+	<form method="POST" id='fuel_cons_form'>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Mileage driven</span>
+			</div>
+			<input type="number" min="1" max="1800.0" step='0.1' value="99.1" class="form-control" id="mileage" name='mileage'>
+			<div class="input-group-append">
+				<span class="input-group-text" id='mileage_val'>Kms</span>
+			</div>
+		</div>
 
-			// Update the current slider value (each time the slider handle is dragged)
-			slider.oninput = function() {
-				output.innerHTML = this.value + 'L';
-			}
-		});
-	</script>
-	<script type='text/javascript'>
-		$('#calc_button').click(function(){
-			$('#overlay').show();
-			$.ajax({
-				url: "/calc",
-				type: "POST",
-				data: $('form').serialize(), // or $('this')
-				success: function(resp){
-					$('#overlay').hide();
-					$('#pwr_results').show();
-					$('#pwr_td').html(resp.data['pwr']);
-					$('#target_torque_td').html(resp.data['target_torque']);
-					console.log(resp);
-					console.log(resp.data)
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					console.log("Status: " + textStatus); 
-					console.log("Error: " + errorThrown);
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Cost</span>
+			</div>
+			<input type="number" value='100' class='form-control' aria-label='Fuel provision cost' name="cost" id='cost' min='1' max='1900' step="0.01">
+		</div>
+
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Consumption</span>
+				<span class="input-group-text" id='cons_val'>L/100Kms</span>
+			</div>
+			<input type="range" value='7.9' class='custom-range' aria-label='MPG L/100Kms' name="cons" id='cons' min='1.0' max='39.0' step="0.1">
+		</div>
+
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Unit Price</span>
+			</div>
+			<input type="number" value='11.08' class='form-control' aria-label='Fuel Unit price' name="up" id='up' min='1' max='300' step="0.01">
+		</div>
+		<!--<button id='calc_button' type="submit" class="btn btn-primary">Submit</button>-->
+		<button id='fuel_cons_button' type="button" class="btn btn-primary">Submit</button>
+	</form>
+	<div  id='fuel_cons_results' >
+		{% include 'fuel_cons_results.html' %}
+
+	</div>
+
+		<script>
+			$(document).ready(function(){
+				// TODO handle when slider is null
+				$('#overlay').hide();
+				$('#pwr_results').hide();
+				$('#fuel_cons_results').hide();
+				var slider = document.getElementById("cp_range");
+				var output = document.getElementById("cp_val");
+				output.innerHTML = slider.value + 'L'; // Display the default slider value
+				// Update the current slider value (each time the slider handle is dragged)
+				slider.oninput = function() {
+					output.innerHTML = this.value + 'L';
+				}
+				var f_slider = document.getElementById("cons");
+				var f_output = document.getElementById("cons_val");
+				f_output.innerHTML = f_slider.value + 'L/100Km'; // Display the default slider value
+				// Update the current slider value (each time the slider handle is dragged)
+				f_slider.oninput = function() {
+					f_output.innerHTML = this.value + 'L/100Kms';
 				}
 			});
-		});
-	</script>
-	{% endblock %}
+		</script>
+		<script type='text/javascript'>
+			$('#calc_button').click(function(){
+				$('#overlay').show();
+				$.ajax({
+					url: "/calc",
+					type: "POST",
+					data: $('#calc_form').serialize(), // or $('this')
+					success: function(resp){
+						$('#overlay').hide();
+						$('#pwr_results').show();
+						$('#pwr_td').html(resp.data['pwr']);
+						$('#target_torque_td').html(resp.data['target_torque']);
+						console.log(resp);
+						console.log(resp.data)
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log("PWR Status: " + textStatus); 
+						console.log("PWR Error: " + errorThrown);
+					}
+				});
+			});
+		</script>
+		<script type='text/javascript'>
+			$('#fuel_cons_button').click(function(){
+				$('#overlay').show();
+				$.ajax({
+					url: "/fuelcons",
+					type: "POST",
+					data: $('#fuel_cons_form').serialize(), // or $('this')
+					success: function(resp){
+						$('#overlay').hide();
+						$('#fuel_cons_results').show();
+						$('#exp_cost_td').html('?');
+						$('#f_tank_td').html(resp.data['f_tank']);
+						$('#exp_mileage_td').html(resp.data['exp_mileage']);
+						$('#t_cons_td').html(resp.data['t_cons']);
+						$('#exp_cost_td').html(resp.data['exp_cost']);
+						console.log(resp);
+						console.log(resp.data)
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log("FUEL CONS Status: " + textStatus); 
+						console.log("FUEL CONS Error: " + errorThrown);
+					}
+				});
+			});
+		</script>
+		{% endblock %}

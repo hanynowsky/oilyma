@@ -1,4 +1,5 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, send_from_directory
+import os
 
 import oilyma
 import utilz
@@ -99,7 +100,8 @@ def contact():
 
 @app.route("/tools")
 def tools():
-    return render_template('tools.html', dicto={'name':APPLICATION_NAME})
+    ptitle = 'Tools'
+    return render_template('tools.html', **locals())
 
 @app.route("/vehicles")
 def vehicles():
@@ -121,6 +123,10 @@ def coding():
 def programing():
     return render_template('programing.html', dicto={'name':APPLICATION_NAME})
 
+
+@app.route('/favicon.png')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.png', mimetype='image/png')
 
 @app.route("/calc", methods=['PUT', 'POST', 'GET'])
 def calc():
@@ -149,5 +155,29 @@ def calc():
         #return jsonify({'data': render_template('calc_results.html', pwr=pwr, target_torque=target_torque, dicto={'name':APPLICATION_NAME})})
         return jsonify({'data': {'pwr':pwr, 'target_torque':target_torque}})
 
+@app.route("/fuelcons", methods=['PUT', 'POST', 'GET'])
+def fuel_cons():
+    f_tank, exp_mileage, t_cons, exp_cost = 0.0, 0.0, 0.0, 0.0
+    toto = utilz.Utilz()
+    if request.form:
+        mileage = request.form['mileage']
+        up = request.form['up']
+        cost = request.form['cost']
+        cons = request.form['cons']
+    if request.args.get('up'):
+        up = request.args.get('up')
+    if request.args.get('mileage'):
+        mileage = request.args.get('mileage')
+    if request.args.get('cost'):
+        cost = request.args.get('cost')
+    if request.args.get('cons'):
+        cost = request.args.get('cons')
+    if cost is None or cost == '':
+        f_tank, exp_mileage, t_cons, exp_cost = toto.fuel_cons(mileage=mileage, cost=cost, up=up, cons=cons)
+        return jsonify({'data': {'f_tank':f_tank, 'exp_mileage':exp_mileage, 't_cons':t_cons, 'exp_cost':exp_cost}})
+    f_tank, exp_mileage, t_cons = toto.fuel_cons(mileage=mileage, cost=cost, up=up, cons=cons)
+    return jsonify({'data': {'f_tank':f_tank, 'exp_mileage':exp_mileage, 't_cons':t_cons}})
+
+############################################# MAIN ############################
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
