@@ -60,7 +60,7 @@ class Utilz:
                     f_tank = round(float( (float(cons) * float(mileage)) / 100 ), 2)
                     exp_mileage = round( ((f_tank * 100) / float(cons)), 2)
                     t_cons = round( ((f_tank * 100) / float(mileage)), 2)
-                    exp_cost = float(float(up) * f_tank) 
+                    exp_cost = round(float(float(up) * f_tank), 2)
                     return f_tank, exp_mileage, t_cons, exp_cost
                 except Exception as ex:
                     print('TRIP COST UTILITY Failed', ex)
