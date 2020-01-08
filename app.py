@@ -181,6 +181,12 @@ def fuel_cons():
     f_tank, exp_mileage, t_cons = toto.fuel_cons(mileage=mileage, cost=cost, up=up, cons=cons)
     return jsonify({'data': {'f_tank':f_tank, 'exp_mileage':exp_mileage, 't_cons':t_cons}})
 
+
+@app.errorhandler(404)
+def not_found(error):
+    #return make_response(jsonify({'error': 'Not found'}), 404)
+    return render_template('error.html', **locals())
+
 ############################################# MAIN ############################
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
