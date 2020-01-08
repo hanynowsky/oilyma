@@ -2,7 +2,7 @@
 {% block body %}
 <div class='header'> 
 	<a href='#calc_form'><button id='pwr_jump_button' type="button" class="btn btn-light">PWR</button></a>
-	<a href='#fuel_cons_form'><button id='fuel_cons_jump_button' type="button" class="btn btn-light">Fuel Consumption</button></a>
+	<a href='#fuel_cons_form_intro'><button id='fuel_cons_jump_button' type="button" class="btn btn-light">Fuel Consumption</button></a>
 </div>
 <div class="alert alert-light" role="alert">
 	Calculate your vehicle's Power to Weight ratio as well as the required minimal torque.
@@ -42,7 +42,7 @@
 
 </div>
 <hr />
-	<div class="alert alert-light" role="alert">
+	<div class="alert alert-light" role="alert" id='fuel_cons_form_intro'>
 		Calculate Your fuel consumption by entering the mileage driven, the total cost of the gas station provision, the unit price for one liter of gasoline and the fuel consumption rate of your trip in L/100km.
 		<span class="badge badge-secondary">
 			<small><em> Leave COST field empty, if you want to calculate a trip expected cost</em></small>

@@ -127,6 +127,9 @@ def programing():
 @app.route('/favicon.png')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.png', mimetype='image/png')
+@app.route('/favicon.ico')
+def favicon_ico():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/calc", methods=['PUT', 'POST', 'GET'])
 def calc():
