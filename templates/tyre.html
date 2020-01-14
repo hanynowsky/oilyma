@@ -1,0 +1,95 @@
+<div class='media' >
+	<img style='width:05rem;'  class="align-self-center mr-3" src='/static/michelin.png' />
+	<div class='media-body'>
+		<div id='tyre_div' class="alert alert-light" role="alert">
+			<p>The following table is a cross between tyre profile influence on steering handling VS suspension comfort</p>
+		</div>
+	</div>
+</div>
+<table id='tyre_table' class='table'>
+	<thead>
+		<th>Width</th>
+		<th>Side Width Ratio</th>
+		<th>Radius</th>
+	</thead>
+	<tbody>
+		<td>
+			<select id='tyre_width'>
+				<option>195</option>
+				<option>205</option>
+				<option>215</option>
+				<option>225</option>
+				<option>235</option>
+				<option>245</option>
+				<option>255</option>
+				<option>265</option>
+				<option>275</option>
+				<option>285</option>
+			</select>
+		</td>
+		<td >
+			<select id='tyre_ratio'>
+				<option>65</option>
+				<option>60</option>
+				<option>55</option>
+				<option>50</option>
+				<option>45</option>
+				<option>40</option>
+				<option>35</option>
+				<option>30</option>
+			</select>
+		</td>
+		<td>
+			<select id='radius'>
+				<option>15</option>
+				<option>16</option>
+				<option>17</option>
+				<option>18</option>
+				<option>19</option>
+				<option>20</option>
+				<option>21</option>
+				<option>22</option>
+			</select>
+		</td>
+	</tbody>
+</table>
+<button class='btn btn-primary' id='show_tyre' type='button' onclick='tata();'>Show Tyre</button>
+<table id='tyre_results_table' class='table'>
+	<thead>
+		<th>Side width</th>
+		<th>Total rubber width</th>
+		<th>Comfort %</th>
+		<th>Effeciency %</th>
+	</thead>
+	<tbody>
+		<td id='side_width'>?</td>
+		<td id='total_width'>?</td>
+		<td id='comfort'>?</td>
+		<td id='efficiency'>?</td>
+	</tbody>
+</table>
+<script >
+	function tata() {
+	    $.getJSON('/tyre?tyre_width='+$('#tyre_width').val()+'&'+'tyre_ratio='+$('#tyre_ratio').val()+'&'+'radius='+$('#radius').val(),
+		function(data) {
+			console.log(data);
+			$('#efficiency').text(data['efficiency']);
+			$('#total_width').text(data['total_width']);
+			$('#side_width').text(data['tyre_side']);
+			$('#comfort').text(data['comfort']);
+			
+			$('#comfort').css({'color': data['com_color'], 'font-weight': 'bold'});
+			$('#efficiency').css({'color': data['eff_color'], 'font-weight': 'bold'});
+
+	    });
+	    return false;
+	 }
+
+</script>
+<script type=text/javascript>
+	$(function() {
+		$('#tyre_table select').bind('change', function() {
+			tata();
+		});
+	});
+</script>

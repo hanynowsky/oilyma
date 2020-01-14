@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class='header'> 
-	<a href='#calc_form'><button id='pwr_jump_button' type="button" class="btn btn-light">PWR</button></a>
-	<a href='#fuel_cons_form_intro'><button id='fuel_cons_jump_button' type="button" class="btn btn-light">Fuel Consumption</button></a>
+	<a href='#calc_form'><button id='pwr_jump_button' type="button" class="btn btn-secondary">PWR</button></a>
+	<a href='#fuel_cons_form_intro'><button id='fuel_cons_jump_button' type="button" class="btn btn-secondary">Fuel Consumption</button></a>
+	<a href='#tyre_div'><button id='tyre_jump_button' type="button" class="btn btn-secondary">Tyre</button></a>
 </div>
 <div class="alert alert-light" role="alert">
 	Calculate your vehicle's Power to Weight ratio as well as the required minimal torque.
@@ -41,7 +42,7 @@
 	{% include 'calc_results.html' %}
 
 </div>
-<hr />
+	<hr />
 	<div class="alert alert-light" role="alert" id='fuel_cons_form_intro'>
 		Calculate Your fuel consumption by entering the mileage driven, the total cost of the gas station provision, the unit price for one liter of gasoline and the fuel consumption rate of your trip in L/100km.
 		<span class="badge badge-secondary">
@@ -87,74 +88,80 @@
 		{% include 'fuel_cons_results.html' %}
 
 	</div>
+		<hr />
 
-		<script>
-			$(document).ready(function(){
-				// TODO handle when slider is null
-				$('#overlay').hide();
-				$('#pwr_results').hide();
-				$('#fuel_cons_results').hide();
-				var slider = document.getElementById("cp_range");
-				var output = document.getElementById("cp_val");
-				output.innerHTML = slider.value + 'L'; // Display the default slider value
-				// Update the current slider value (each time the slider handle is dragged)
-				slider.oninput = function() {
-					output.innerHTML = this.value + 'L';
+		<div  id='tyre_results' >
+			{% include 'tyre.html' %}
+
+		</div>
+
+	<script>
+		$(document).ready(function(){
+			// TODO handle when slider is null
+			$('#overlay').hide();
+			$('#pwr_results').hide();
+			$('#fuel_cons_results').hide();
+			var slider = document.getElementById("cp_range");
+			var output = document.getElementById("cp_val");
+			output.innerHTML = slider.value + 'L'; // Display the default slider value
+			// Update the current slider value (each time the slider handle is dragged)
+			slider.oninput = function() {
+				output.innerHTML = this.value + 'L';
+			}
+			var f_slider = document.getElementById("cons");
+			var f_output = document.getElementById("cons_val");
+			f_output.innerHTML = f_slider.value + 'L/100Km'; // Display the default slider value
+			// Update the current slider value (each time the slider handle is dragged)
+			f_slider.oninput = function() {
+				f_output.innerHTML = this.value + 'L/100Kms';
+			}
+		});
+	</script>
+	<script type='text/javascript'>
+		$('#calc_button').click(function(){
+			$('#overlay').show();
+			$.ajax({
+				url: "/calc",
+				type: "POST",
+				data: $('#calc_form').serialize(), // or $('this')
+				success: function(resp){
+					$('#overlay').hide();
+					$('#pwr_results').show();
+					$('#pwr_td').html(resp.data['pwr']);
+					$('#target_torque_td').html(resp.data['target_torque']);
+					console.log(resp);
+					console.log(resp.data)
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log("PWR Status: " + textStatus); 
+					console.log("PWR Error: " + errorThrown);
 				}
-				var f_slider = document.getElementById("cons");
-				var f_output = document.getElementById("cons_val");
-				f_output.innerHTML = f_slider.value + 'L/100Km'; // Display the default slider value
-				// Update the current slider value (each time the slider handle is dragged)
-				f_slider.oninput = function() {
-					f_output.innerHTML = this.value + 'L/100Kms';
+			});
+		});
+	</script>
+	<script type='text/javascript'>
+		$('#fuel_cons_button').click(function(){
+			$('#overlay').show();
+			$.ajax({
+				url: "/fuelcons",
+				type: "POST",
+				data: $('#fuel_cons_form').serialize(), // or $('this')
+				success: function(resp){
+					$('#overlay').hide();
+					$('#fuel_cons_results').show();
+					$('#exp_cost_td').html('?');
+					$('#f_tank_td').html(resp.data['f_tank']);
+					$('#exp_mileage_td').html(resp.data['exp_mileage']);
+					$('#t_cons_td').html(resp.data['t_cons']);
+					$('#exp_cost_td').html(resp.data['exp_cost']);
+					console.log(resp);
+					console.log(resp.data)
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log("FUEL CONS Status: " + textStatus); 
+					console.log("FUEL CONS Error: " + errorThrown);
 				}
 			});
-		</script>
-		<script type='text/javascript'>
-			$('#calc_button').click(function(){
-				$('#overlay').show();
-				$.ajax({
-					url: "/calc",
-					type: "POST",
-					data: $('#calc_form').serialize(), // or $('this')
-					success: function(resp){
-						$('#overlay').hide();
-						$('#pwr_results').show();
-						$('#pwr_td').html(resp.data['pwr']);
-						$('#target_torque_td').html(resp.data['target_torque']);
-						console.log(resp);
-						console.log(resp.data)
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						console.log("PWR Status: " + textStatus); 
-						console.log("PWR Error: " + errorThrown);
-					}
-				});
-			});
-		</script>
-		<script type='text/javascript'>
-			$('#fuel_cons_button').click(function(){
-				$('#overlay').show();
-				$.ajax({
-					url: "/fuelcons",
-					type: "POST",
-					data: $('#fuel_cons_form').serialize(), // or $('this')
-					success: function(resp){
-						$('#overlay').hide();
-						$('#fuel_cons_results').show();
-						$('#exp_cost_td').html('?');
-						$('#f_tank_td').html(resp.data['f_tank']);
-						$('#exp_mileage_td').html(resp.data['exp_mileage']);
-						$('#t_cons_td').html(resp.data['t_cons']);
-						$('#exp_cost_td').html(resp.data['exp_cost']);
-						console.log(resp);
-						console.log(resp.data)
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						console.log("FUEL CONS Status: " + textStatus); 
-						console.log("FUEL CONS Error: " + errorThrown);
-					}
-				});
-			});
-		</script>
-		{% endblock %}
+		});
+	</script>
+	{% endblock %}

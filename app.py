@@ -182,6 +182,18 @@ def fuel_cons():
     return jsonify({'data': {'f_tank':f_tank, 'exp_mileage':exp_mileage, 't_cons':t_cons}})
 
 
+@app.route("/tyre", methods=['PUT', 'POST', 'GET'])
+def tyre():
+    toto = utilz.Utilz()
+    hratio, radius, width = 95, 15, 195
+    if request.args:
+        hratio = request.args.get('tyre_ratio')
+        radius = request.args.get('radius')
+        width = request.args.get('tyre_width')
+    tyre_side, total_width, efficiency, eff_color, comfort, com_color = toto.tyre_rubber(radius=float(radius), width=float(width), hratio=float(hratio))
+    datum = {'eff_color':eff_color, 'comfort':comfort, 'com_color':com_color, 'tyre_side':round(tyre_side, 2), 'total_width':round(total_width, 2), 'efficiency':round(efficiency, 1)}
+    return jsonify(datum)
+
 @app.errorhandler(404)
 def not_found(error):
     #return make_response(jsonify({'error': 'Not found'}), 404)

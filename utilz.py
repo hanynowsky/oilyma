@@ -75,7 +75,51 @@ class Utilz:
                     print('FUEL CONSUMPTION UTILITY Failed', ex)
                     return 0.0, 0.0, 0.0
 
+    def tyre_colors(self, efficiency, total_width, radius):
+        """ returns color of comfort and color of efficiency
+        """
+        orange, light_green, green, strong_green = '#FFC300', '#DAF7A6', '#3cff33', '#0e7209'
+        eff_color, com_color = orange, orange
+        x = efficiency
+        if x <= 65:
+            eff_color = orange 
+        if x <= 75 and x > 65:
+            eff_color = light_green
+        if x <= 85 and x > 75:
+            eff_color = green 
+        if x > 85:
+            eff_color = strong_green 
+
+        y = round(float(total_width / 5.24 / radius), 2)
+        y = float(y * 100 / 6)
+        if y > 100:
+            y = 100
+        if y >= 51:
+            com_color = light_green 
+        if y >= 80:
+            com_color = green 
+        if y >= 90:
+            com_color = strong_green 
+        return eff_color, round(y, 2), com_color
+
+    def tyre_rubber(self, radius=15, width=195, hratio=65):
+        """  returns height of tyre side and total width of tyre
+            - returns efficiency of handling index as a third element
+        """
+        tyre_side = float(( hratio / 100 )  * width)
+        total_width = float(width + (tyre_side * 2))
+        coeff = 0.1
+        if radius > 20:
+            coeff = coeff - ((radius - 20) / 100 / 2)
+        efficiency = ((radius * 25.4 ) + (tyre_side) + float((width - tyre_side) * 2)) * coeff
+        comfort = round(float(total_width / 5.24), 2)
+        eff_color, comfort, com_color = self.tyre_colors(efficiency, total_width, radius)
+        return tyre_side, total_width, round(efficiency, 2), eff_color, comfort, com_color
+    
+
+##################################################### TEST ####################
 #toto = Utilz()
+#print(toto.tyre_rubber(radius=15, width=195, hratio=65))
 #print(toto.fuel_cons(99.1, 100, 11.08, 7.9))
 
 
