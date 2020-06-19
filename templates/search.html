@@ -7,7 +7,7 @@
 </div>
 <h6> <span class="badge badge-secondary">Engine oil search preferences</span></h6>
 <div class='jumbotronX' style='padding:5px;'>
-	<form method="POST" oncomplete="$('#overlay').hide();">
+	<form method="{{METHOD}}" oncomplete="$('#overlay').hide();">
 	  <div>
 		  <div class="input-group mb-3">
 			  <div class="input-group-prepend">
@@ -48,6 +48,20 @@
 			  </select>
 		  </div>
 		  <p> <small id="grade_help" class="form-text text-muted">Oil Multi-grade viscocity.</small></p>
+	  </div>
+	  <div id='engine_div'>
+		  <div class="input-group mb-3" >
+			  <div class="input-group-prepend">
+				  <span class="input-group-text" id="basic-addon1">Engine</span>
+			  </div>
+			  <select class="form-control" name="engine" id="engine" >
+				  <option value="">Generic</option>
+				  {% for k,v in engines.items() %}
+				  <option value='{{ v }}'>{{k}} - {{v}} </option>
+				  {% endfor %}
+			  </select>
+		  </div>
+		  <p><small id="engine_help" class="form-text text-muted">Engine code.</small></p>
 	  </div>
 	  <div id='mileage_div'>
 		  <div class="input-group mb-3" >

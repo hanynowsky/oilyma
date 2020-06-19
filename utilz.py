@@ -1,10 +1,20 @@
 from country_list import countries_for_language
 import pycountry_convert as pc
+from configuration import ENGINES
 
 class Utilz:
 
     def __init__(self, debug=False):
         self.debug = debug
+
+    def get_engines(self):
+        """ List of NA Engines. Dictionary.
+        """
+        engines = ENGINES
+        if engines:
+            return engines
+        else:
+            return {'0':'any'}
 
     def get_countries(self):
         """ List of Countries. Dictionary.

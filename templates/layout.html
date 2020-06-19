@@ -35,7 +35,7 @@
 
 		<!-- Car Query API -->
 		<!-- <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script> -->
-		<script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+		<script type="text/javascript" src="https://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
 
 		<!-- Oilyma Business -->
 		<script>
@@ -75,6 +75,7 @@
 				if (auval == 0) {
 					document.getElementById('ocons_div').style.display = 'none';
 					document.getElementById('mileage_div').style.display = 'none';
+					document.getElementById('engine_div').style.display = 'none';
 					document.getElementById('country_div').style.display = 'none';
 				}
 				$( "#auto" ).change( function() {
@@ -88,9 +89,11 @@
 
 						$("#ocons").show();
 						$("#mileage").show();
+						$("#engine").show();
 						$("#country").show();
 						document.getElementById('ocons_div').style.display = 'block';
 						document.getElementById('mileage_div').style.display = 'block';
+						document.getElementById('engine_div').style.display = 'block';
 						document.getElementById('country_div').style.display = 'block';
 					}
 					else {
@@ -98,6 +101,7 @@
 						$("#approval_div").show();
 						document.getElementById('ocons_div').style.display = 'none';
 						document.getElementById('mileage_div').style.display = 'none';
+						document.getElementById('engine_div').style.display = 'none';
 						document.getElementById('country_div').style.display = 'none';
 					}
 				});

@@ -20,15 +20,58 @@ def results():
     result = oto.j_data()
     return result
 
-@app.route("/")
-def index():
+@app.route("/oil")
+def oil():
     toto = utilz.Utilz()
     countries = toto.get_countries()
-    return render_template('search.html', countries=countries)
+    engines = toto.get_engines()
+    browser = False
+    engine = 'N42' #request.form['engine']
+    grade = '5W30' #request.args.get('grade')
+    approval = 'BMWLL01' # request.args.get('approval')
+    mileage = request.args.get('mileage')
+    ocons = request.args.get('ocons')
+    country = request.args.get('country')
+    surname = ''
+    auto = 1
+    if None in [mileage, ocons, country, engine]:
+        browser = True
+
+    return render_template('search.html', countries=countries, engines=engines)
+
+@app.route("/")
+def index():
+    METHOD = 'GET'
+    toto = utilz.Utilz()
+    countries = toto.get_countries()
+    engines = toto.get_engines()
+    browser = False
+    engine = 'N42' #request.form['engine']
+    grade = '5W30' #request.args.get('grade')
+    approval = 'BMWLL01' # request.args.get('approval')
+    mileage = request.args.get('mileage')
+    ocons = request.args.get('ocons')
+    country = request.args.get('country')
+    surname = ''
+    auto = 1
+    if None in [mileage, ocons, country, engine]:
+        browser = True
+
+    if browser:
+        return render_template('search.html', countries=countries, METHOD=METHOD, engines=engines)
+    else:
+        toto = oilyma.Oilyma()
+        data, error_name = toto.j_sdata(auto=auto, ocons=ocons, mileage=mileage, country=country, grades=[grade], approvals=[approval])
+        if data is None:
+            return render_template('error.html', error=str(error_name))
+        return render_template('results.html', country=country, surname=surname, grade=grade, approval=approval, data=json.loads(data))
 
 @app.route('/', methods=['POST'])
 def post_index():
-    surname = request.form['surname']
+    METHOD = 'POST'
+    surname = request.args.get('surname')
+    if surname is None:
+        surname = request.form['surname']
     grade = request.form['grade']
     approval = request.form['approval'].replace(' ', '')
     mileage = request.form['mileage']
@@ -122,6 +165,10 @@ def coding():
 @app.route("/programing")
 def programing():
     return render_template('programing.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/news")
+def news():
+    return render_template('news.html', dicto={'name':APPLICATION_NAME})
 
 
 @app.route('/favicon.png')
