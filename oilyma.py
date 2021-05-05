@@ -154,6 +154,7 @@ class Oilyma:
             - mileage (INTEGER) = Mileage in Kilometers.
             - country (STRING) = Country where the car is being driven
         """
+        #print('Data', auto, ocons, mileage, country, grades, approvals)
         do_append = True
         mileage_rank = 0
         ocons_level = 0

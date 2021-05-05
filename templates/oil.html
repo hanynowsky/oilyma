@@ -3,11 +3,11 @@
 {% block body %}
 
 <div class="alert alert-light" role="alert">
-	<img height='30px' src='/static/favicon.ico' /> <small>Only BMW Naturaly-Aspirated Petrol engines are supported.</small>
+	<img height='30px' src='/static/favicon.ico' /> <small>Only BMW Naturaly-Aspirated non-racing Petrol engines are supported for now.</small>
 </div>
 <h6> <span class="badge badge-secondary">Engine oil search preferences</span></h6>
 <div class='jumbotronX' style='padding:5px;'>
-	<form method="{{METHOD}}" oncomplete="$('#overlay').hide();">
+	<form method="POST" oncomplete="$('#overlay').hide();">
 	  <div>
 		  <div class="input-group mb-3">
 			  <div class="input-group-prepend">
@@ -29,8 +29,6 @@
 			  <select class="form-control" name="approval" id="approval">
 				  <option value="BMWLL01">BMW LL01</option>
 				  <option value="BMWLL04">BMW LL04</option>
-				  <option value="BMWLL01FE">BMW LL01 FE</option>
-				  <option value="BMWM">BMW M-SPORT</option>
 				  <option value="">All</option>
 			  </select>
 			  </div>
@@ -46,25 +44,10 @@
 				  <option>5W40</option>
 				  <option>0W40</option>
 				  <option>0W30</option>
-				  <option>10W60</option>
 				  <option value="">All</option>
 			  </select>
 		  </div>
 		  <p> <small id="grade_help" class="form-text text-muted">Oil Multi-grade viscocity.</small></p>
-	  </div>
-	  <div id='engine_div'>
-		  <div class="input-group mb-3" >
-			  <div class="input-group-prepend">
-				  <span class="input-group-text" id="basic-addon1">Engine</span>
-			  </div>
-			  <select class="form-control" name="engine" id="engine" >
-				  <option value="">Generic</option>
-				  {% for k,v in engines.items() %}
-				  <option value='{{ v }}'>{{k}} - {{v}} </option>
-				  {% endfor %}
-			  </select>
-		  </div>
-		  <p><small id="engine_help" class="form-text text-muted">Engine code.</small></p>
 	  </div>
 	  <div id='mileage_div'>
 		  <div class="input-group mb-3" >

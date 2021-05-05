@@ -46,17 +46,30 @@ def index():
     countries = toto.get_countries()
     engines = toto.get_engines()
     browser = False
-    engine = 'N42' #request.form['engine']
-    grade = '5W30' #request.args.get('grade')
-    approval = 'BMWLL01' # request.args.get('approval')
+    approval, grade, engine = 'BMWLL01', '5W30', 'N46'
+    try:
+        engine = request.form['engine'].upper()
+    except:
+        engine = 'N42' 
+    try:
+        grade = request.args.get('grade').upper()
+    except:
+        grade = '5W30' 
+    try:
+        approval = request.args.get('approval').upper()
+    except:
+        approval = 'BMWLL01' 
     mileage = request.args.get('mileage')
     ocons = request.args.get('ocons')
     country = request.args.get('country')
     surname = ''
     auto = 1
+    try:
+        auto = int(request.args.get('auto'))
+    except:
+        auto = 0
     if None in [mileage, ocons, country, engine]:
         browser = True
-
     if browser:
         return render_template('search.html', countries=countries, METHOD=METHOD, engines=engines)
     else:
@@ -169,6 +182,10 @@ def programing():
 @app.route("/news")
 def news():
     return render_template('news.html', dicto={'name':APPLICATION_NAME})
+
+@app.route("/oilconsumption")
+def oilconsumption():
+    return render_template('oilconsumption.html', dicto={'name':APPLICATION_NAME})
 
 
 @app.route('/favicon.png')
